@@ -1,6 +1,18 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import MarkdownRenderer from "./components/MarkdownRenderer";
+
+const RULES_MD = `
+## 玩法说明
+
+- **点击红包**：每个红包有随机分值，点击后加分。
+- **炸雷包**（黑色）：点击后扣分，小心避开！
+- **连击奖励**：连续点中普通红包可获得额外奖励：
+  - 连击 ≥ 3：每包 +3 分奖励
+  - 连击 ≥ 6：每包 +8 分奖励
+- **计时 30 秒**：时间到后自动结算，最高分记入本机排行榜。
+`;
 
 type Packet = {
   id: number;
@@ -223,6 +235,12 @@ export default function Home() {
               </ol>
             </div>
           </aside>
+        </section>
+        <section className="rounded-2xl border border-[#f4d6b0] bg-white/90 p-5 shadow-[0_10px_28px_rgba(120,44,14,0.08)]">
+          <MarkdownRenderer
+            content={RULES_MD}
+            className="prose prose-sm max-w-none text-[#5a3520] [&_h2]:text-[#8f1f17] [&_h2]:font-black [&_strong]:text-[#7c3918]"
+          />
         </section>
       </div>
     </main>
